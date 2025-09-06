@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Qr generator</title>
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg,#80ff008e,rgb(255, 175, 14)),url("https://lp.simplified.com/siteimages/ai/qr-generator-features.png");
+        font-family: sans-serif;
+      }
+
+      .container {
+        background-color: rgba(255,255,255,0.15);
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255
+        , 255, 255, 0.3);
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+        color: #ffff;
+      }
+
+      span {
+        margin-bottom: 3px;
+        font-weight: 600;
+        text-align: center;
+        font-size: 16px;
+        font-family: cursive;
+      }
+
+      input {
+        width: 250px;
+        height: 35px;
+        padding: 5px;
+        border: 1px solid #7FFF00;
+        border-radius: 5px;
+        font-size: 14px;
+        background-color: transparent;
+        color: #ffff;
+
+      }
+      #btn {
+        background-color: #256325;
+        padding: 12px 25px;
+        border: none;
+        color: white;
+        font-weight: 600;
+        border-radius: 5px;
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s;
+        margin-top: 10px;
+      }
+      #btn:hover {
+        background-color: #369636;
+        transform: scale(1.1);
+      }
+
+      img {
+        border: 1px solid rgb(30, 255, 0);
+        padding: 5px;
+        display: none;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <span>Enter your text or URL : </span>
+      <input id="qr-text" type="text" placeholder="Enter text or url" />
+      <div class="qr" id="qr">
+        <img src="" alt="" id="img" />
+      </div>
+      <button id="btn" onclick="generateqr()">Generate qr</button>
+    </div>
+
+    <script>
+      const qrtext = document.getElementById("qr-text");
+      const qr = document.getElementById("qr");
+      const qr_img = document.getElementById("img");
+
+      function generateqr() {
+
+        if (qrtext.value == ""){
+            alert("Enter Text to Generate QR!")
+        }
+        else{
+        img.src =
+          " https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
+          qrtext.value;
+          img.style.display="inline";
+          alert("Qr successfully generated 😎")
+        }
+          
+      }
+    </script>
+  </body>
+</html>
