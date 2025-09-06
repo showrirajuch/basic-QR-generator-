@@ -75,6 +75,20 @@
         margin-top: 10px;
         margin-bottom: 10px;
       }
+      #downqr {
+        
+        background-color: #3320ff;
+        padding: 12px 25px;
+        border: none;
+        color: white;
+        font-weight: 600;
+        border-radius: 5px;
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+      }
     </style>
   </head>
   <body>
@@ -85,12 +99,17 @@
         <img src="" alt="" id="img" />
       </div>
       <button id="btn" onclick="generateqr()">Generate qr</button>
+      <button id="downqr" onclick="downloadqr()">Download</button>
     </div>
 
     <script>
       const qrtext = document.getElementById("qr-text");
       const qr = document.getElementById("qr");
       const qr_img = document.getElementById("img");
+      const downloadbtn = document.getElementById("downqr")
+      let genimg = false
+      downloadbtn.style.display="none";
+      
 
       function generateqr() {
 
@@ -103,9 +122,35 @@
           qrtext.value;
           img.style.display="inline";
           alert("Qr successfully generated 😎")
+          genimg = true
+          downloadbtn.style.display="block";
         }
           
       }
+      
+      async function downloadqr(){
+        
+          
+          
+          
+          const imageUrl = " https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
+          qrtext.value; // API endpoint
+  const fileName ="qrcode" + ".jpg";
+
+  const response = await fetch(imageUrl);
+  const blob = await response.blob();          // Convert response to Blob
+  const blobUrl = URL.createObjectURL(blob);   // Create local URL
+
+  const a = document.createElement("a");
+  a.href = blobUrl;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  URL.revokeObjectURL(blobUrl); // cleanup
+        }
+      
     </script>
   </body>
 </html>
